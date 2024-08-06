@@ -6,10 +6,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object client {
+    val gson:Gson = GsonBuilder().create()
+
     val retrofit = Retrofit.Builder()
         .baseUrl("https://potterapi-fedeperin.vercel.app")
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
-    val services = retrofit.create(service::class.java)
+    val api = retrofit.create(service::class.java)
 }
